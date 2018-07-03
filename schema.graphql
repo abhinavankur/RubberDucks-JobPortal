@@ -1,0 +1,24 @@
+# source: http://localhost:4000/graphql
+# timestamp: Tue Jul 03 2018 19:58:49 GMT+0530 (India Standard Time)
+
+scalar Date
+
+type Job {
+  jobId: Int!
+  jobPortfolio: String!
+  createdOn: Date
+  closedOn: Date
+  isActive: Boolean!
+  jobDescription: String!
+}
+
+type Mutation {
+  createJobOpening(jobPortfolio: String, jobDescription: String): Job
+}
+
+type Query {
+  message: String
+  language: String
+  job(jobId: Int!): Job
+  jobs: [Job]
+}

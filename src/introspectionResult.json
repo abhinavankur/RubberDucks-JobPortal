@@ -1,0 +1,126 @@
+{
+    "introspectionResult" : {
+        "types" : [
+            {
+                "name": "Job",
+                "description": null,
+                "kind" : "OBJECT",
+                "fields": [
+                  {
+                    "name": "jobId",
+                    "type": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "Int",
+                        "ofType": null
+                      }
+                    }
+                  }
+                ]
+            }
+        ],
+        "queries" : [
+            {
+                "name": "job",
+                "description": null,
+                "args": [
+                  {
+                    "name": "jobId",
+                    "description": null,
+                    "type": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "Int",
+                        "ofType": null
+                      }
+                    }
+                  }
+                ],
+                "type": {
+                  "kind": "OBJECT",
+                  "name": "Job",
+                  "ofType": null
+                }
+            },
+            {
+                "name": "jobs",
+                "description": null,
+                "args": [],
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Job",
+                    "ofType": null
+                  }
+                }
+            }
+        ],
+        "resources" : [
+            {
+               "type" : {
+                    "name": "Job",
+                    "description": null,
+                    "kind" : "OBJECT",
+                    "fields": [
+                    {
+                        "name": "jobId",
+                        "type": {
+                        "kind": "NON_NULL",
+                        "name": null,
+                        "ofType": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                        }
+                        }
+                    }
+                    ]
+                }, 
+                "GET_ONE" : {
+                    "name": "job",
+                    "description": null,
+                    "args": [
+                      {
+                        "name": "jobId",
+                        "description": null,
+                        "type": {
+                          "kind": "NON_NULL",
+                          "name": null,
+                          "ofType": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                          }
+                        }
+                      }
+                    ],
+                    "type": {
+                      "kind": "OBJECT",
+                      "name": "Job",
+                      "ofType": null
+                    }
+                },
+                "GET_LIST" :  {
+                    "name": "jobs",
+                    "description": null,
+                    "args": [],
+                    "type": {
+                      "kind": "LIST",
+                      "name": null,
+                      "ofType": {
+                        "kind": "OBJECT",
+                        "name": "Job",
+                        "ofType": null
+                      }
+                    }
+                }
+            }
+        ]
+    }
+}
