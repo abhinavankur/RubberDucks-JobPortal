@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Datagrid, TextField } from 'react-admin';
+import { List, Create, Datagrid, TextField, LongTextInput, TabbedForm,FormTab,SelectInput,DateInput,NumberInput, TextInput } from 'react-admin';
 
 export const PostList = (props) => (
     <List {...props}>
@@ -9,4 +9,26 @@ export const PostList = (props) => (
             <TextField source="jobDescription" />
         </Datagrid>
     </List>
+);
+
+export const JobCreate = (props) => (
+    <Create {...props}>
+        <TabbedForm>
+        <FormTab label="Summary">
+            <TextInput source="Title"  />
+            <SelectInput source="category" choices={[
+                { id: 'Finance/Accounting', name: 'Finance/Accounting' },
+                { id: 'IT/Application Development', name: 'IT/Application Development' },
+                { id: 'Janitorial Services', name: 'Janitorial Services' },
+            ]} />
+            <NumberInput source="Minimum Experience(Years)" />
+        </FormTab>
+        <FormTab label="Description">
+            <LongTextInput source="Description"  />            
+        </FormTab>
+        <FormTab label="Schedule">
+            <DateInput source="Last Date to apply"  />            
+        </FormTab>
+        </TabbedForm>
+    </Create>
 );

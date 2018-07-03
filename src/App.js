@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import buildGraphQLProvider from 'ra-data-graphql';
 import { Admin, Resource, Delete } from 'react-admin';
-import { PostList } from './posts';
+import { PostList,JobCreate } from './posts';
 import { __schema as schema } from './schema';
 import ApolloClient from "apollo-boost";
 import { introspectionResult } from './introspectionResult'
 import gql from "graphql-tag";
 import { createNetworkInterface } from 'react-apollo';
-<<<<<<< HEAD
 import {myLogin} from './loginStuff/login';
 
-=======
 import buildFieldList from './buildFieldList'
 import buildArgList from './buildArgList'
->>>>>>> f0bfdd2b197eb5a535a3ca80aefdbf5a47528a3d
 
 const myClient = new ApolloClient({
   uri: "http://10.74.18.242:4000/graphql"
@@ -48,11 +45,7 @@ const queryBuilder = introspectionResults => (raFetchType, resourceName, params)
         variables : {},
         parseResponse : function(response) {
           var data = JSON.parse(JSON.stringify(response.data.data).split('"jobId":').join('"id":'));;
-<<<<<<< HEAD
-          console.log(data);
-=======
         
->>>>>>> f0bfdd2b197eb5a535a3ca80aefdbf5a47528a3d
           return { "data" : data, "total" : data.length}}
       }
   }
@@ -80,7 +73,7 @@ class App extends Component {
 
         return (
             <Admin loginPage={myLogin} dataProvider={dataProvider}>
-                <Resource name="Job" list={PostList} remove={Delete} />
+                <Resource name="Job" list={PostList} remove={Delete} create={JobCreate} />
             </Admin>
         );
     }
