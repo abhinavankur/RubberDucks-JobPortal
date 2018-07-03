@@ -7,7 +7,8 @@ import ApolloClient from "apollo-boost";
 import { introspectionResult } from './introspectionResult'
 import gql from "graphql-tag";
 import { createNetworkInterface } from 'react-apollo';
-
+import buildFieldList from './buildFieldList'
+import buildArgList from './buildArgList'
 
 const myClient = new ApolloClient({
   uri: "http://localhost:4000/graphql"
@@ -30,10 +31,8 @@ const queryBuilder = introspectionResults => (raFetchType, resourceName, params)
     case 'GET_ONE' : 
       return {
         query : gql`query ${resource[raFetchType].name}($jobId : Int!){
-          data : ${resource[raFetchType].name}(jobId : $jobId){
-            jobId,
-            jobPortfolio,
-            jobDescription
+          data : ${resource[raFetchType].name}${buildArgList(introspectionResult, resource, raFetchType)}{
+            ${buildFieldList(introspectionResult, resource, raFetchType)}
           }
         }`,
         variables : {},
@@ -43,14 +42,12 @@ const queryBuilder = introspectionResults => (raFetchType, resourceName, params)
       return {
         query : gql`query {
           data : ${resource[raFetchType].name}{
-            jobId,
-            jobPortfolio,
-            jobDescription
+            ${buildFieldList(introspectionResult, resource, raFetchType)}
           }
         }`,
         variables : {},
         parseResponse : function(response) {
-          var data = JSON.parse(JSON.stringify(response.data.data).split('"_id":').join('"id":'));;
+          var data = JSON.parse(JSON.stringify(response.data.data).split('"jobId":').join('"id":'));;
         
           return { "data" : data, "total" : data.length}}
       }
