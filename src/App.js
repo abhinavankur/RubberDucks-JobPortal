@@ -7,10 +7,11 @@ import ApolloClient from "apollo-boost";
 import { introspectionResult } from './introspectionResult'
 import gql from "graphql-tag";
 import { createNetworkInterface } from 'react-apollo';
+import {myLogin} from './loginStuff/login';
 
 
 const myClient = new ApolloClient({
-  uri: "http://localhost:4000/graphql"
+  uri: "http://10.74.18.242:4000/graphql"
 });
 
 const introspectionOptions = {
@@ -20,11 +21,6 @@ const introspectionOptions = {
 const queryBuilder = introspectionResults => (raFetchType, resourceName, params) => {
   const resource = introspectionResult.resources.find(r => r.type.name === resourceName);
   console.log(resource)
-  //console.log(resourceName)
-  //console.log();
-  //console.log(raFetchType)
-  //console.log(params)
-  //console.log(introspectionResult.resources)
   console.log("Fetch type : --- " + raFetchType);
   switch(raFetchType) {
     case 'GET_ONE' : 
@@ -50,8 +46,8 @@ const queryBuilder = introspectionResults => (raFetchType, resourceName, params)
         }`,
         variables : {},
         parseResponse : function(response) {
-          var data = JSON.parse(JSON.stringify(response.data.data).split('"_id":').join('"id":'));;
-        
+          var data = JSON.parse(JSON.stringify(response.data.data).split('"jobId":').join('"id":'));;
+          console.log(data);
           return { "data" : data, "total" : data.length}}
       }
   }
@@ -78,7 +74,7 @@ class App extends Component {
         }
 
         return (
-            <Admin dataProvider={dataProvider}>
+            <Admin loginPage={myLogin} dataProvider={dataProvider}>
                 <Resource name="Job" list={PostList} remove={Delete} />
             </Admin>
         );
