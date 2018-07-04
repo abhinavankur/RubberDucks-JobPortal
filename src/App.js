@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import buildGraphQLProvider from 'ra-data-graphql';
 import { Admin, Resource, Delete } from 'react-admin';
-import { PostList,JobCreate } from './posts';
+import { PostList,JobCreate, JobShow } from './posts';
 import { __schema as schema } from './schema';
 import ApolloClient from "apollo-boost";
 import { introspectionResult } from './introspectionResult'
@@ -73,7 +73,7 @@ class App extends Component {
 
         return (
             <Admin loginPage={myLogin} dataProvider={dataProvider}>
-                <Resource name="Job" list={PostList} remove={Delete} create={JobCreate} />
+                <Resource name="Job" list={PostList} remove={Delete} create={JobCreate} show={JobShow}/>
             </Admin>
         );
     }
