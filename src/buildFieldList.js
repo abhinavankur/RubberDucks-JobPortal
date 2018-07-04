@@ -2,7 +2,7 @@ export default function buildFieldList (introspectionResults, resource, raFetchT
     var type = resource.type;
     switch(type.name){
         case "Job" : 
-            return ["jobId", "jobPortfolio", "jobDescription"]
+            return ["jobId", "jobPortfolio", "jobDescription", "jobName", "lastDateToApply", "interviewDate"]
         case "Candidate":
             return ["candidateId", "candidateName"]
     }
