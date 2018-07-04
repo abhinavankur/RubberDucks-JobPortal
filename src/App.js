@@ -6,12 +6,12 @@ import { __schema as schema } from './schema';
 import ApolloClient from "apollo-boost";
 import { introspectionResult } from './introspectionResult'
 import gql from "graphql-tag";
-import { createNetworkInterface } from 'react-apollo';
+//import { createNetworkInterface } from 'react-apollo';
 import Login from './login';
-import customRoutes from './customRoutes';
+//import customRoutes from './customRoutes';
 import buildFieldList from './buildFieldList';
 import buildArgList from './buildArgList';
-import authProvider from './authProvider';
+//import authProvider from './authProvider';
 
 const myClient = new ApolloClient({
   uri: "http://10.74.18.242:4000/graphql"
@@ -52,6 +52,8 @@ const queryBuilder = introspectionResults => (raFetchType, resourceName, params)
           console.log(data);
           return { "data" : data, "total" : data.length}}
       }
+    default:
+      return [];
   }
 };
 

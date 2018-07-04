@@ -5,5 +5,11 @@ export default function buildFieldList (introspectionResults, resource, raFetchT
             return ["jobId", "jobPortfolio", "jobDescription", "jobName", "lastDateToApply", "interviewDate"]
         case "Candidate":
             return ["candidateId", "candidateName"]
+        case "JobApplication":
+            return ["jobId", "candidateId", "applicationId", "appliedAt"]
+       case "Feedback":
+            return ["feedbackId", "candidateId", "jobId", "feedback", "createdOn", "positive", "rating"]
+        default:
+            return [];
     }
 }

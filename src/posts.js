@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReferenceField, Show,Link, SimpleShowLayout, List, RichTextField, DateField, Create, Datagrid, TextField, LongTextInput, TabbedForm,FormTab,SelectInput,DateInput,NumberInput, TextInput } from 'react-admin';
+import { ReferenceField, Show, SimpleShowLayout, List, RichTextField, DateField, Create, Datagrid, TextField, LongTextInput, TabbedForm,FormTab,SelectInput,DateInput,NumberInput, TextInput } from 'react-admin';
 
 
 export const PostList = (props) => (
