@@ -7,12 +7,14 @@ import ApolloClient from "apollo-boost";
 import { introspectionResult } from './introspectionResult'
 import gql from "graphql-tag";
 import { createNetworkInterface } from 'react-apollo';
-import {myLogin} from './loginStuff/login';
+import Login from './login';
+import customRoutes from './customRoutes';
 import buildFieldList from './buildFieldList';
 import buildArgList from './buildArgList';
+import authProvider from './authProvider';
 
 const myClient = new ApolloClient({
-  uri: "http://10.74.18.242:4000/graphql"
+  uri: "http://localhost:4000/graphql"
 });
 
 const introspectionOptions = {
@@ -26,7 +28,7 @@ const queryBuilder = introspectionResults => (raFetchType, resourceName, params)
   switch(raFetchType) {
     case 'GET_ONE' : 
       return {
-        query : gql`query ${resource[raFetchType].name}($jobId : Int!){
+        query : gql`query {
           data : ${resource[raFetchType].name}${buildArgList(introspectionResult, resource, raFetchType,params)}{
             ${buildFieldList(introspectionResult, resource, raFetchType,params)}
           }
@@ -71,7 +73,7 @@ class App extends Component {
         }
 
         return (
-            <Admin loginPage={myLogin} dataProvider={dataProvider}>
+            <Admin loginPage={Login} dataProvider={dataProvider}>
                 <Resource name="Job" list={PostList} remove={Delete} create={JobCreate} show={JobShow}/>
             </Admin>
         );

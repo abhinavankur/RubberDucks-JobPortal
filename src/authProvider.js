@@ -4,6 +4,7 @@ export default (type, params) => {
     if (type === AUTH_LOGIN) {
         const { username } = params;
         localStorage.setItem('username', username);
+        alert("setting item");
         // accept all username/password combinations
         return Promise.resolve();
     }

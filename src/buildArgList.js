@@ -3,7 +3,7 @@ export default function buildArgList(introspectionResults, resource, raFetchType
     console.log(params)
     switch(raFetchType){
         case "GET_ONE" : 
-            return getArgListForOne(introspectionResults, resource, type.name);
+            return getArgListForOne(introspectionResults, resource, type.name, params);
         case "GET_LIST" : 
             return getArgList(introspectionResults, resource, type.name, params);
     }
@@ -11,10 +11,12 @@ export default function buildArgList(introspectionResults, resource, raFetchType
 
 //(jobId : $jobId)
 function getArgListForOne(introspectionResults, resource, raFetchType, params){
-    
+    console.log("pre params");
+    console.log(params);
+    console.log("post params");
     switch(raFetchType){
         case "Job" :
-            return "(jobId : $jobId)";
+            return "(jobId : " + params.id + ")";
     }
 
 }
