@@ -80,6 +80,7 @@ class App extends Component {
         return (
             <Admin loginPage={Login} authProvider={authProvider} dataProvider={dataProvider}>
                 <Resource name="Job" list={PostList} remove={Delete} create={JobCreate} show={JobShow}/>
+                
             </Admin>
         );
     }
