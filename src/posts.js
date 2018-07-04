@@ -39,10 +39,11 @@ export const JobCreate = (props) => (
 export const JobShow = (props) => (
     <Show {...props}>
         <SimpleShowLayout>
-            <TextField source="title" />
-            <TextField source="teaser" />
-            <RichTextField source="body" />
-            <DateField label="Publication date" source="created_at" />
+            <TextField source="jobName" />
+            <TextField source="jobPortfolio" />
+            <RichTextField source="jobDescription" />
+            <DateField label="Last date to apply" source="lastDateToApply" />
+            <DateField label="Interview Date" source="interviewDate" />
         </SimpleShowLayout>
     </Show>
 );
