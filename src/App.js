@@ -51,6 +51,8 @@ const queryBuilder = introspectionResults => (raFetchType, resourceName, params)
           console.log(data);
           return { "data" : data, "total" : data.length}}
       }
+    default:
+      return [];
   }
 };
 

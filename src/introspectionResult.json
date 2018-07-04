@@ -19,6 +19,82 @@
                     }
                   }
                 ]
+            },
+            {
+                "name": "JobApplication",
+                "description": null,
+                "kind" : "OBJECT",
+                "fields": [
+                  {
+                    "name": "applicationId",
+                    "type": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "Int",
+                        "ofType": null
+                      }
+                    }
+                  }
+                ]
+            },
+            {
+                "name": "Candidate",
+                "description": null,
+                "kind" : "OBJECT",
+                "fields": [
+                  {
+                    "name": "candidateId",
+                    "type": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "Int",
+                        "ofType": null
+                      }
+                    }
+                  }
+                ]
+            },
+            {
+                "name": "Admin",
+                "description": null,
+                "kind" : "OBJECT",
+                "fields": [
+                  {
+                    "name": "adminId",
+                    "type": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "Int",
+                        "ofType": null
+                      }
+                    }
+                  }
+                ]
+            },
+            {
+                "name": "Feedback",
+                "description": null,
+                "kind" : "OBJECT",
+                "fields": [
+                  {
+                    "name": "feedbackId",
+                    "type": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "Int",
+                        "ofType": null
+                      }
+                    }
+                  }
+                ]
             }
         ],
         "queries" : [
@@ -59,10 +135,47 @@
                     "ofType": null
                   }
                 }
+            },
+            {
+                "name": "createJobApplication",
+                "description": null,
+                "args": [
+                  {
+                    "name": "candidateId",
+                    "description": null,
+                    "type": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "Int",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  {
+                    "name": "jobId",
+                    "description": null,
+                    "type": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "Int",
+                        "ofType": null
+                      }
+                    }
+                  }
+                ],
+                "type": {
+                  "kind": "OBJECT",
+                  "name": "JobApplication",
+                  "ofType": null
+                }
             }
         ],
         "resources" : [
-            {
+          {
                "type" : {
                     "name": "Job",
                     "description": null,
@@ -119,6 +232,178 @@
                         "ofType": null
                       }
                     }
+                },
+                "CREATE" : {
+                    "name": "createJobOpening",
+                    "description": null,
+                    "args": [
+                      {
+                        "name": "jobPortfolio",
+                        "description": null,
+                        "type": {
+                          "kind": "NON_NULL",
+                          "name": null,
+                          "ofType": {
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
+                          }
+                        }
+                      },
+                      {
+                        "name": "createdOn",
+                        "description": null,
+                        "type": {
+                          "kind": "NON_NULL",
+                          "name": null,
+                          "ofType": {
+                            "kind": "SCALAR",
+                            "name": "Date",
+                            "ofType": null
+                          }
+                        }
+                      },
+                      {
+                        "name": "createdOn",
+                        "description": null,
+                        "type": {
+                          "kind": "NON_NULL",
+                          "name": null,
+                          "ofType": {
+                            "kind": "SCALAR",
+                            "name": "Date",
+                            "ofType": null
+                          }
+                        }
+                      },
+                      {
+                        "name": "isActive",
+                        "description": null,
+                        "type": {
+                          "kind": "NON_NULL",
+                          "name": null,
+                          "ofType": {
+                            "kind": "SCALAR",
+                            "name": "Boolean",
+                            "ofType": null
+                          }
+                        }
+                      },
+                      {
+                        "name": "jobDescription",
+                        "description": null,
+                        "type": {
+                          "kind": "NON_NULL",
+                          "name": null,
+                          "ofType": {
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
+                          }
+                        }
+                      },
+                      {
+                        "name": "jobName",
+                        "description": null,
+                        "type": {
+                          "kind": "NON_NULL",
+                          "name": null,
+                          "ofType": {
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
+                          }
+                        }
+                      },
+                      {
+                        "name": "lastDateToApply",
+                        "description": null,
+                        "type": {
+                          "kind": "NON_NULL",
+                          "name": null,
+                          "ofType": {
+                            "kind": "SCALAR",
+                            "name": "Date",
+                            "ofType": null
+                          }
+                        }
+                      },
+                      {
+                        "name": "interviewDate",
+                        "description": null,
+                        "type": {
+                          "kind": "NON_NULL",
+                          "name": null,
+                          "ofType": {
+                            "kind": "SCALAR",
+                            "name": "Date",
+                            "ofType": null
+                          }
+                        }
+                      }
+                    ],
+                    "type": {
+                      "kind": "OBJECT",
+                      "name": "Job",
+                      "ofType": null
+                    }
+                }
+            },
+            {
+               "type" : {
+                    "name": "JobApplication",
+                    "description": null,
+                    "kind" : "OBJECT"
+                }, 
+                "GET_ONE" : {
+                    "name": "jobApplication",
+                    "description": null
+                },
+                "GET_LIST" :  {
+                    "name": "jobApplications",
+                    "description": null
+                },
+                "CREATE" : {
+                    "name": "createJobApplication",
+                    "description": null                    
+                }
+            },
+            {
+               "type" : {
+                    "name": "Candidate",
+                    "description": null,
+                    "kind" : "OBJECT"
+                }, 
+                "GET_ONE" : {
+                    "name": "candidate",
+                    "description": null
+                },
+                "GET_LIST" :  {
+                    "name": "candidates",
+                    "description": null
+                },
+                "CREATE" : {
+                    "name": "createCandidate",
+                    "description": null                    
+                }
+            },
+            {
+               "type" : {
+                    "name": "Feedback",
+                    "description": null,
+                    "kind" : "OBJECT"
+                }, 
+                "GET_ONE" : {
+                    "name": "feedback",
+                    "description": null
+                },
+                "GET_LIST" :  {
+                    "name": "feedbacks",
+                    "description": null
+                },
+                "CREATE" : {
+                    "name": "createFeedback",
+                    "description": null                    
                 }
             }
         ]

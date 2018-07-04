@@ -5,10 +5,26 @@ export default function buildArgList(introspectionResults, resource, raFetchType
         case "GET_ONE" : 
             return getArgListForOne(introspectionResults, resource, type.name, params);
         case "GET_LIST" : 
-            return getArgList(introspectionResults, resource, type.name, params);
+            return "";
+        case "CREATE" :
+            return getArgListForCreate(introspectionResults, resource, type.name, params);
+        default:
+            return [];
     }
 }
 
+function getArgListForCreate(introspectionResults, resource, resTypeName, params){
+    switch(resTypeName){
+        case "Job" :
+            return "(jobPortfolio : " + params.data.jobPortfolio + ", jobDescription : " + params.data.jobDescription + ", jobName : " + params.data.jobName + ", lastDateToApply : " + params.data.lastDateToApply + ", interviewDate : " + params.data.interviewDate + ")";
+        case "JobApplication" :
+            return "(jobId : " + params.data.jobId + ", candidateId : " + params.data.candidateId + ")";
+        case "Feedback" :
+            return "(candidateId : " + params.data.candidateId + ", jobId : " + params.data.jobId + ", feedback : " + params.data.feedback + ", positive : " + params.data.positive + ", rating : " + params.data.rating + ")";
+        default:
+            return "";
+    }
+}
 //(jobId : $jobId)
 function getArgListForOne(introspectionResults, resource, raFetchType, params){
     console.log("pre params");
@@ -17,11 +33,17 @@ function getArgListForOne(introspectionResults, resource, raFetchType, params){
     switch(raFetchType){
         case "Job" :
             return "(jobId : " + params.id + ")";
+        case "JobApplication" :
+            return "(applicationId : " + params.id + ")";
+        case "Feedback" :
+            return "(feedbackId : " + params.id + ")";
+        default:
+            return "";
     }
 
 }
 
-function getArgList(introspectionResults, resource, type, params){
+/*function getArgList(introspectionResults, resource, type, params){
     var filter = params.filter;
     var pagination = params.pagination;
     var sort = params.sort;
@@ -48,4 +70,4 @@ function getArgList(introspectionResults, resource, type, params){
         argString = "";
     
     return argString;
-}
+}*/
