@@ -11,6 +11,7 @@ import customRoutes from './customRoutes';
 import buildFieldList from './buildFieldList';
 import buildArgList from './buildArgList';
 import authProvider from './authProvider';
+import {AppList, AppShow} from './applications'
 
 const myClient = new ApolloClient({
   uri: "http://10.74.18.242:4000/graphql"
@@ -77,19 +78,16 @@ class App extends Component {
         }
 
         return (
-<<<<<<< HEAD
-            <Admin loginPage={Login} authProvider={authProvider} dataProvider={dataProvider}>
-                <Resource name="Job" list={PostList} remove={Delete} create={JobCreate} show={JobShow}/>
-                
-=======
             <Admin title="RubberDucks' Careers" customRoutes={customRoutes}  loginPage={Login} authProvider={authProvider} dataProvider={dataProvider}>
             {permissions => [
                <Resource name="Job" list={PostList} 
                           remove={permissions === 'admin' ? Delete : null} 
                           create={permissions === 'admin' ? JobCreate : null}
-                show={JobShow}/>
-            ]}
->>>>>>> 0d02c6e04b2f2cc66a60a34ea73100d114beb4b9
+                show={JobShow} />,
+
+                <Resource name="JobApplication" list={AppList} show={AppShow}/>
+              ]}
+
             </Admin>
         );
     }

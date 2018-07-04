@@ -6,7 +6,7 @@ export default function buildFieldList (introspectionResults, resource, raFetchT
         case "Candidate":
             return ["candidateId", "candidateName"]
         case "JobApplication":
-            return ["jobId", "candidateId", "applicationId", "appliedAt"]
+            return ["jobId", "candidateId", "applicationId", "appliedOn"]
        case "Feedback":
             return ["feedbackId", "candidateId", "jobId", "feedback", "createdOn", "positive", "rating"]
         default:
