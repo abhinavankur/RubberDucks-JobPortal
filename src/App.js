@@ -11,7 +11,7 @@ import Login from './login';
 //import customRoutes from './customRoutes';
 import buildFieldList from './buildFieldList';
 import buildArgList from './buildArgList';
-//import authProvider from './authProvider';
+import authProvider from './authProvider';
 
 const myClient = new ApolloClient({
   uri: "http://10.74.18.242:4000/graphql"

@@ -2,7 +2,7 @@ import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_CHECK, AUTH_ERROR } from 'react-admin';
 
 export default (type, params) => {
     if (type === AUTH_LOGIN) {
-        const { username, password } = params;
+        const { username } = params;
         // console.log(params);
         // console.log(btoa(password));
         // fetch('http://10.74.18.242:4000/graphql',{
