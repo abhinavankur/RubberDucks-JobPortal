@@ -6,7 +6,6 @@ import { __schema as schema } from './schema';
 import ApolloClient from "apollo-boost";
 import { introspectionResult } from './introspectionResult'
 import gql from "graphql-tag";
-import { createNetworkInterface } from 'react-apollo';
 import Login from './login';
 import customRoutes from './customRoutes';
 import buildFieldList from './buildFieldList';
@@ -76,8 +75,13 @@ class App extends Component {
         }
 
         return (
-            <Admin loginPage={Login} authProvider={authProvider} dataProvider={dataProvider}>
-                <Resource name="Job" list={PostList} remove={Delete} create={JobCreate} show={JobShow}/>
+            <Admin title="RubberDucks' Careers" customRoutes={customRoutes}  loginPage={Login} authProvider={authProvider} dataProvider={dataProvider}>
+            {permissions => [
+               <Resource name="Job" list={PostList} 
+                          remove={permissions === 'admin' ? Delete : null} 
+                          create={permissions === 'admin' ? JobCreate : null}
+                show={JobShow}/>
+            ]}
             </Admin>
         );
     }

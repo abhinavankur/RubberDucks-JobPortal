@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 export class RegisterForm extends Component{
     constructor(props) {
@@ -12,19 +13,35 @@ export class RegisterForm extends Component{
           age: ""
         };
       }
+
       handleChange = event => {
         this.setState({
           [event.target.id]: event.target.value
         });
       }
-      // handleSubmit = event => {
-      //       alert("triggered on submit bitches")
-      //       alert({this.state.email})
-      //       alert({this.state.password})
-      //       alert({this.state.name})
-      //       alert({this.state.wexp})
-      //       alert({this.state.age})
-      // }
+
+      handleClick = event => {
+        event.preventDefault();
+        axios.post('http://10.74.18.242:4000/graphql',{
+          "query": "mutation  cc($candidateName : String, $candidateAge : Int, $workExperience : Int, $email : String, $password : String){ createCandidate(email : $email, password : $password, workExperience : $workExperience, candidateAge : $candidateAge, candidateName : $candidateName){ candidateId, email, role, isValid } }",
+          "operationName": "cc",
+          "variables": {
+            "email" : this.state.email,
+            "password" : btoa(this.state.password),
+            "candidateName" : this.state.name,
+            "candidateAge" : this.state.age,
+            "workExperience" : this.state.wexp
+          }
+        }).then(function (response) {
+            if(response.data.errors){
+                alert('Cannot create user please change and try again')
+            }else{
+                alert('Account created Successfully. Click Ok to login');
+                window.location.replace("/login")
+            }
+        });
+      }
+
     render(){
         var widthStyle = {
             'width' : '50%'
@@ -55,7 +72,7 @@ export class RegisterForm extends Component{
             <input type="number" className="form-control" id="age" onChange={event => this.handleChange(event)}/>
         </div>
         <br />   
-        <button type="submit" class="btn btn-primary" onSubmit={event => this.handleSubmitr(event)}>Sign Up</button>
+        <button type="submit" class="btn btn-primary" onClick={event => this.handleClick(event)}>Sign Up</button>
         </form>     
       </div>
         );
