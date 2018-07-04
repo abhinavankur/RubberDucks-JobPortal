@@ -14,7 +14,7 @@ import buildArgList from './buildArgList';
 import authProvider from './authProvider';
 
 const myClient = new ApolloClient({
-  uri: "http://localhost:4000/graphql"
+  uri: "http://10.74.18.242:4000/graphql"
 });
 
 const introspectionOptions = {
@@ -34,7 +34,10 @@ const queryBuilder = introspectionResults => (raFetchType, resourceName, params)
           }
         }`,
         variables : {},
-        parseResponse : response => response.data
+        parseResponse : function(response) {
+          var data = JSON.parse(JSON.stringify(response.data.data).split('"jobId":').join('"id":'));
+          console.log(data);
+          return { "data" : data}}
       }
     case 'GET_LIST':
       return {
@@ -73,7 +76,7 @@ class App extends Component {
         }
 
         return (
-            <Admin loginPage={Login} dataProvider={dataProvider}>
+            <Admin loginPage={Login} authProvider={authProvider} dataProvider={dataProvider}>
                 <Resource name="Job" list={PostList} remove={Delete} create={JobCreate} show={JobShow}/>
             </Admin>
         );
