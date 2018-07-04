@@ -17,6 +17,14 @@ export class RegisterForm extends Component{
           [event.target.id]: event.target.value
         });
       }
+      // handleSubmit = event => {
+      //       alert("triggered on submit bitches")
+      //       alert({this.state.email})
+      //       alert({this.state.password})
+      //       alert({this.state.name})
+      //       alert({this.state.wexp})
+      //       alert({this.state.age})
+      // }
     render(){
         var widthStyle = {
             'width' : '50%'
@@ -47,7 +55,7 @@ export class RegisterForm extends Component{
             <input type="number" className="form-control" id="age" onChange={event => this.handleChange(event)}/>
         </div>
         <br />   
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button type="submit" class="btn btn-primary" onSubmit={event => this.handleSubmitr(event)}>Sign Up</button>
         </form>     
       </div>
         );
