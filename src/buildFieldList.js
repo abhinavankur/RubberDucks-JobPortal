@@ -1,4 +1,4 @@
-export default function buildFieldList (introspectionResults, resource, raFetchType){
+export default function buildFieldList (introspectionResults, resource, raFetchType, params){
     var type = resource.type;
     switch(type.name){
         case "Job" : 

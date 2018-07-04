@@ -7,13 +7,9 @@ import ApolloClient from "apollo-boost";
 import { introspectionResult } from './introspectionResult'
 import gql from "graphql-tag";
 import { createNetworkInterface } from 'react-apollo';
-<<<<<<< HEAD
 import {myLogin} from './loginStuff/login';
-
-=======
-import buildFieldList from './buildFieldList'
-import buildArgList from './buildArgList'
->>>>>>> f0bfdd2b197eb5a535a3ca80aefdbf5a47528a3d
+import buildFieldList from './buildFieldList';
+import buildArgList from './buildArgList';
 
 const myClient = new ApolloClient({
   uri: "http://10.74.18.242:4000/graphql"
@@ -31,8 +27,8 @@ const queryBuilder = introspectionResults => (raFetchType, resourceName, params)
     case 'GET_ONE' : 
       return {
         query : gql`query ${resource[raFetchType].name}($jobId : Int!){
-          data : ${resource[raFetchType].name}${buildArgList(introspectionResult, resource, raFetchType)}{
-            ${buildFieldList(introspectionResult, resource, raFetchType)}
+          data : ${resource[raFetchType].name}${buildArgList(introspectionResult, resource, raFetchType,params)}{
+            ${buildFieldList(introspectionResult, resource, raFetchType,params)}
           }
         }`,
         variables : {},
@@ -41,18 +37,14 @@ const queryBuilder = introspectionResults => (raFetchType, resourceName, params)
     case 'GET_LIST':
       return {
         query : gql`query {
-          data : ${resource[raFetchType].name}{
-            ${buildFieldList(introspectionResult, resource, raFetchType)}
+          data : ${resource[raFetchType].name}${buildArgList(introspectionResult, resource, raFetchType,params)}{
+            ${buildFieldList(introspectionResult, resource, raFetchType,params)}
           }
         }`,
         variables : {},
         parseResponse : function(response) {
-          var data = JSON.parse(JSON.stringify(response.data.data).split('"jobId":').join('"id":'));;
-<<<<<<< HEAD
+          var data = JSON.parse(JSON.stringify(response.data.data).split('"jobId":').join('"id":'));
           console.log(data);
-=======
-        
->>>>>>> f0bfdd2b197eb5a535a3ca80aefdbf5a47528a3d
           return { "data" : data, "total" : data.length}}
       }
   }
